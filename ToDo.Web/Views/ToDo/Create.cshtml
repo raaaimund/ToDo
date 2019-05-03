@@ -1,0 +1,19 @@
+﻿@using ToDo.Web.Models.ToDo
+@model CreateViewModel
+@{
+    ViewData["Title"] = "New item";
+}
+
+<h1 class="display-4">New item</h1>
+<form asp-action="@nameof(ToDo.Web.Controllers.ToDoController.Create)">
+    @Html.AntiForgeryToken()
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <div class="form-group">
+        <label asp-for="Name" class="control-label"></label>
+        <input asp-for="Name" class="form-control" />
+        <span asp-validation-for="Name" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <input type="submit" value="Create" class="btn btn-primary" />
+    </div>
+</form>

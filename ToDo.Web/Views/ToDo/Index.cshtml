@@ -1,0 +1,20 @@
+﻿@using ToDo.Dto
+@model IEnumerable<ToDoItem>
+@{
+    ViewData["Title"] = "My ToDos";
+}
+
+<h1 class="display-4">My ToDos</h1>
+<div class="mt-5"></div>
+<ul>
+    @foreach (var item in Model)
+    {
+    <li class="todo-item">
+        <a asp-action="@nameof(ToDo.Web.Controllers.ToDoController.Update)" asp-route-id="@item.Id">@item.Name</a>
+        |
+        <a asp-action="@nameof(ToDo.Web.Controllers.ToDoController.Delete)" asp-route-id="@item.Id">Delete</a>
+    </li>
+    }
+</ul>
+<div class="mt-5"></div>
+<a asp-action="Create" class="btn btn-primary">New item</a>
