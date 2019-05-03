@@ -22,7 +22,7 @@ namespace ToDo.Web.Tests.ControllerTests.ToDoControllerTests
         [Fact]
         public void CreateGetShouldHaveNoViewModel()
         {
-            var result = Controller.Create();
+            var result = ControllerUnderTest.Create();
 
             var viewResult = Assert.IsType<ViewResult>(result);
             Assert.Null(viewResult.ViewData.Model);
@@ -33,8 +33,8 @@ namespace ToDo.Web.Tests.ControllerTests.ToDoControllerTests
         {
             var model = new CreateViewModel();
 
-            Controller.ModelState.AddModelError("error", "testerror");
-            var result = await Controller.Create(model);
+            ControllerUnderTest.ModelState.AddModelError("error", "testerror");
+            var result = await ControllerUnderTest.Create(model);
 
             var viewResult = Assert.IsType<ViewResult>(result);
             Assert.IsAssignableFrom<CreateViewModel>(viewResult.ViewData.Model);
@@ -45,7 +45,7 @@ namespace ToDo.Web.Tests.ControllerTests.ToDoControllerTests
         {
             var model = new CreateViewModel();
 
-            var result = await Controller.Create(model);
+            var result = await ControllerUnderTest.Create(model);
 
             var redirectResult = Assert.IsType<RedirectToActionResult>(result);
             Assert.Equal(nameof(ToDoController.Index), redirectResult.ActionName);
@@ -56,7 +56,7 @@ namespace ToDo.Web.Tests.ControllerTests.ToDoControllerTests
         {
             var model = new CreateViewModel() { Name = nameof(CreatePostShouldCallAddItemAsyncOnceIfModelIsValid) };
 
-            var result = await Controller.Create(model);
+            var result = await ControllerUnderTest.Create(model);
 
             MockService.Verify(mock => mock.AddItemAsync(It.IsAny<ToDoItem>()), Times.Once);
         }
@@ -67,7 +67,7 @@ namespace ToDo.Web.Tests.ControllerTests.ToDoControllerTests
             var item = new ToDoItem() { Name = nameof(CreatePostShouldCallAddItemAsyncWithCorrectParameterIfModelIsValid) };
             var model = new CreateViewModel() { Name = item.Name };
 
-            var result = await Controller.Create(model);
+            var result = await ControllerUnderTest.Create(model);
 
             MockService.Verify(mock => mock.AddItemAsync(It.Is<ToDoItem>(i => i.Name.Equals(item.Name))), Times.Once);
         }

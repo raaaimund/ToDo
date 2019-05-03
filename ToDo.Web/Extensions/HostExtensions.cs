@@ -10,7 +10,7 @@ namespace ToDo.Web.Extensions
 {
     public static class HostExtensions
     {
-        public static IHost MigrateDbContext<TContext>(this IHost webHost, Action<IServiceProvider> seeder)
+        public static IHost MigrateDbContext<TContext>(this IHost webHost, Action<IServiceProvider> serviceProvider)
             where TContext : DbContext
         {
             using (var scope = webHost.Services.CreateScope())
@@ -34,7 +34,7 @@ namespace ToDo.Web.Extensions
                     retry.Execute(() =>
                     {
                         context.Database.Migrate();
-                        seeder(services);
+                        serviceProvider(services);
                     });
 
                     logger.LogInformation($"Migrated database associated with context {typeof(TContext).Name}");

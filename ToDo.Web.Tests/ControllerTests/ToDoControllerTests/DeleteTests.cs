@@ -22,7 +22,7 @@ namespace ToDo.Web.Tests.ControllerTests.ToDoControllerTests
         [Fact]
         public async Task DeleteGetWithInvalidIdShouldReturnNotFound()
         {
-            var result = await Controller.Delete(Guid.Empty);
+            var result = await ControllerUnderTest.Delete(Guid.Empty);
 
             Assert.IsType<NotFoundResult>(result);
         }
@@ -30,7 +30,7 @@ namespace ToDo.Web.Tests.ControllerTests.ToDoControllerTests
         [Fact]
         public async Task DeleteGetShouldCallGetAsyncOnce()
         {
-            var result = await Controller.Delete(Guid.Empty);
+            var result = await ControllerUnderTest.Delete(Guid.Empty);
 
             MockService.Verify(mock => mock.GetAsync(It.IsAny<Guid>()), Times.Once);
         }
@@ -40,7 +40,7 @@ namespace ToDo.Web.Tests.ControllerTests.ToDoControllerTests
         {
             MockService.Setup(svc => svc.GetAsync(FirstItem.Id)).ReturnsAsync(FirstItem);
 
-            var result = await Controller.Delete(FirstItem.Id);
+            var result = await ControllerUnderTest.Delete(FirstItem.Id);
 
             var viewResult = Assert.IsType<ViewResult>(result);
             Assert.IsAssignableFrom<DeleteViewModel>(viewResult.ViewData.Model);
@@ -51,7 +51,7 @@ namespace ToDo.Web.Tests.ControllerTests.ToDoControllerTests
         {
             MockService.Setup(svc => svc.GetAsync(FirstItem.Id)).ReturnsAsync(FirstItem);
 
-            var result = await Controller.Delete(FirstItem.Id);
+            var result = await ControllerUnderTest.Delete(FirstItem.Id);
 
             var viewResult = Assert.IsType<ViewResult>(result);
             var viewModel = Assert.IsAssignableFrom<DeleteViewModel>(viewResult.ViewData.Model);
@@ -64,7 +64,7 @@ namespace ToDo.Web.Tests.ControllerTests.ToDoControllerTests
         {
             var model = new DeleteViewModel();
 
-            var result = await Controller.Delete(model);
+            var result = await ControllerUnderTest.Delete(model);
 
             var redirectResult = Assert.IsType<RedirectToActionResult>(result);
             Assert.Equal(nameof(ToDoController.Index), redirectResult.ActionName);
@@ -75,7 +75,7 @@ namespace ToDo.Web.Tests.ControllerTests.ToDoControllerTests
         {
             var model = new DeleteViewModel() { Name = nameof(DeletePostShouldCallDeleteItemAsyncOnceIfModelIsValid) };
 
-            await Controller.Delete(model);
+            await ControllerUnderTest.Delete(model);
 
             MockService.Verify(mock => mock.DeleteItemAsync(It.IsAny<Guid>()), Times.Once);
         }
@@ -86,7 +86,7 @@ namespace ToDo.Web.Tests.ControllerTests.ToDoControllerTests
             var item = new ToDoItem() { Id = FirstItem.Id, Name = nameof(DeletePostShouldCallDeleteItemAsyncWithCorrectParameter) };
             var model = new DeleteViewModel() { Id = item.Id, Name = item.Name };
 
-            await Controller.Delete(model);
+            await ControllerUnderTest.Delete(model);
 
             MockService.Verify(mock => mock.DeleteItemAsync(It.Is<Guid>(id => id.Equals(item.Id))), Times.Once);
         }

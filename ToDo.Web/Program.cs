@@ -14,10 +14,9 @@ namespace ToDo.Web
         public static void Main(string[] args) =>
             CreateHostBuilder(args)
             .Build()
-            .MigrateDbContext<ToDoDbContext>(provider =>
+            .MigrateDbContext<ToDoDbContext>(serviceProvider =>
             {
-                // seed database
-                var context = provider.GetRequiredService<ToDoDbContext>();
+                var context = serviceProvider.GetRequiredService<ToDoDbContext>();
                 if(!context.ToDoItem.Any())
                 {
                     context.ToDoItem.Add(new ToDoItem() { Id = Guid.NewGuid(), Name = "Item 1" });
@@ -29,9 +28,9 @@ namespace ToDo.Web
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>
             Host.CreateDefaultBuilder(args)
-                .ConfigureWebHostDefaults(webBuilder =>
+                .ConfigureWebHostDefaults(configure =>
                 {
-                    webBuilder.UseStartup<Startup>();
+                    configure.UseStartup<Startup>();
                 });
     }
 }

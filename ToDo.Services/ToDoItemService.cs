@@ -14,14 +14,15 @@ namespace ToDo.Services
         private readonly ToDoDbContext _dbContext;
         private readonly ILogger<ToDoItemService> _logger;
 
-        public ToDoItemService(ToDoDbContext dbContext) : this(dbContext, null)
+        public ToDoItemService(ToDoDbContext dbContext)
         {
+            this._dbContext = dbContext ?? throw new ArgumentNullException(nameof(dbContext));
         }
 
         public ToDoItemService(ToDoDbContext dbContext, ILogger<ToDoItemService> logger)
         {
-            this._dbContext = dbContext;
-            this._logger = logger;
+            this._dbContext = dbContext ?? throw new ArgumentNullException(nameof(dbContext));
+            this._logger = logger ?? throw new ArgumentNullException(nameof(logger));
         }
 
         public async Task<ToDoItem> GetAsync(Guid id)

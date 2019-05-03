@@ -22,7 +22,7 @@ namespace ToDo.Web.Tests.ControllerTests.ToDoControllerTests
         [Fact]
         public async Task UpdateGetWithInvalidIdShouldReturnNotFound()
         {
-            var result = await Controller.Update(Guid.Empty);
+            var result = await ControllerUnderTest.Update(Guid.Empty);
 
             Assert.IsType<NotFoundResult>(result);
         }
@@ -30,7 +30,7 @@ namespace ToDo.Web.Tests.ControllerTests.ToDoControllerTests
         [Fact]
         public async Task UpdateGetShouldCallGetAsyncOnce()
         {
-            var result = await Controller.Update(Guid.Empty);
+            var result = await ControllerUnderTest.Update(Guid.Empty);
 
             MockService.Verify(mock => mock.GetAsync(It.IsAny<Guid>()), Times.Once);
         }
@@ -40,7 +40,7 @@ namespace ToDo.Web.Tests.ControllerTests.ToDoControllerTests
         {
             MockService.Setup(svc => svc.GetAsync(FirstItem.Id)).ReturnsAsync(FirstItem);
 
-            var result = await Controller.Update(FirstItem.Id);
+            var result = await ControllerUnderTest.Update(FirstItem.Id);
 
             var viewResult = Assert.IsType<ViewResult>(result);
             Assert.IsAssignableFrom<UpdateViewModel>(viewResult.ViewData.Model);
@@ -51,7 +51,7 @@ namespace ToDo.Web.Tests.ControllerTests.ToDoControllerTests
         {
             MockService.Setup(svc => svc.GetAsync(FirstItem.Id)).ReturnsAsync(FirstItem);
 
-            var result = await Controller.Update(FirstItem.Id);
+            var result = await ControllerUnderTest.Update(FirstItem.Id);
 
             var viewResult = Assert.IsType<ViewResult>(result);
             var viewModel = Assert.IsAssignableFrom<UpdateViewModel>(viewResult.ViewData.Model);
@@ -64,8 +64,8 @@ namespace ToDo.Web.Tests.ControllerTests.ToDoControllerTests
         {
             var model = new UpdateViewModel();
 
-            Controller.ModelState.AddModelError("error", "testerror");
-            var result = await Controller.Update(model);
+            ControllerUnderTest.ModelState.AddModelError("error", "testerror");
+            var result = await ControllerUnderTest.Update(model);
 
             var viewResult = Assert.IsType<ViewResult>(result);
             Assert.IsAssignableFrom<UpdateViewModel>(viewResult.ViewData.Model);
@@ -76,7 +76,7 @@ namespace ToDo.Web.Tests.ControllerTests.ToDoControllerTests
         {
             var model = new UpdateViewModel();
 
-            var result = await Controller.Update(model);
+            var result = await ControllerUnderTest.Update(model);
 
             var redirectResult = Assert.IsType<RedirectToActionResult>(result);
             Assert.Equal(nameof(ToDoController.Index), redirectResult.ActionName);
@@ -87,7 +87,7 @@ namespace ToDo.Web.Tests.ControllerTests.ToDoControllerTests
         {
             var model = new UpdateViewModel() { Name = nameof(UpdatePostShouldCallUpdateItemAsyncOnceIfModelIsValid) };
 
-            await Controller.Update(model);
+            await ControllerUnderTest.Update(model);
 
             MockService.Verify(mock => mock.UpdateItemAsync(It.IsAny<ToDoItem>()), Times.Once);
         }
@@ -98,7 +98,7 @@ namespace ToDo.Web.Tests.ControllerTests.ToDoControllerTests
             var item = new ToDoItem() { Id = FirstItem.Id, Name = nameof(UpdatePostShouldCallUpdateItemAsyncWithCorrectParameterIfModelIsValid) };
             var model = new UpdateViewModel() { Id = item.Id, Name = item.Name };
 
-            await Controller.Update(model);
+            await ControllerUnderTest.Update(model);
 
             MockService.Verify(mock => mock.UpdateItemAsync(It.Is<ToDoItem>(i => i.Name.Equals(item.Name) && i.Id.Equals(item.Id))), Times.Once);
         }

@@ -10,7 +10,7 @@ namespace ToDo.Web.Tests.ControllerTests.ToDoControllerTests
     {
         protected readonly List<ToDoItem> Items;
         protected readonly Mock<IToDoItemService> MockService;
-        protected readonly ToDoController Controller;
+        protected readonly ToDoController ControllerUnderTest;
 
         protected BaseToDoControllerTests(List<ToDoItem> items)
         {
@@ -18,7 +18,7 @@ namespace ToDo.Web.Tests.ControllerTests.ToDoControllerTests
             MockService = new Mock<IToDoItemService>();
             MockService.Setup(svc => svc.GetItemsAsync())
                 .ReturnsAsync(Items);
-            Controller = new ToDoController(MockService.Object);
+            ControllerUnderTest = new ToDoController(MockService.Object);
         }
     }
 }
