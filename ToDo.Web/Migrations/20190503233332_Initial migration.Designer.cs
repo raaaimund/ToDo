@@ -9,8 +9,8 @@ using ToDo.Data;
 namespace ToDo.Web.Migrations
 {
     [DbContext(typeof(ToDoDbContext))]
-    [Migration("20190430220620_InitialMigration")]
-    partial class InitialMigration
+    [Migration("20190503233332_Initial migration")]
+    partial class Initialmigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -30,6 +30,23 @@ namespace ToDo.Web.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("ToDoItem");
+                });
+
+            modelBuilder.Entity("ToDo.Dto.User", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("PasswordHash")
+                        .IsRequired();
+
+                    b.Property<string>("Username")
+                        .IsRequired()
+                        .HasMaxLength(128);
+
+                    b.HasKey("Id");
+
+                    b.ToTable("User");
                 });
 #pragma warning restore 612, 618
         }

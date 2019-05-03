@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using ToDo.Data;
 
 namespace ToDo.Web.Migrations
@@ -27,6 +28,23 @@ namespace ToDo.Web.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("ToDoItem");
+                });
+
+            modelBuilder.Entity("ToDo.Dto.User", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("PasswordHash")
+                        .IsRequired();
+
+                    b.Property<string>("Username")
+                        .IsRequired()
+                        .HasMaxLength(128);
+
+                    b.HasKey("Id");
+
+                    b.ToTable("User");
                 });
 #pragma warning restore 612, 618
         }

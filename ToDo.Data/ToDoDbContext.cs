@@ -5,7 +5,8 @@ namespace ToDo.Data
 {
     public class ToDoDbContext : DbContext
     {
-        public virtual DbSet<ToDoItem> ToDoItem { get; set; }
+        public DbSet<ToDoItem> ToDoItem { get; set; }
+        public DbSet<User> User { get; set; }
 
         public ToDoDbContext(DbContextOptions<ToDoDbContext> options)
             : base(options)

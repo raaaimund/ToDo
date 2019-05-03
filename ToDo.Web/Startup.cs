@@ -8,7 +8,10 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI;
 using Microsoft.Extensions.Hosting;
+using ToDo.Dto;
 using ToDo.Services;
+using ToDo.Web.Extensions;
+using ToDo.Web.Identity;
 
 namespace ToDo.Web
 {
@@ -30,9 +33,10 @@ namespace ToDo.Web
         protected void ConfigureDefaultServices(IServiceCollection services)
         {
             services.Configure<CookiePolicyOptions>(options => { options.CheckConsentNeeded = context => true; });
-            services.AddDefaultIdentity<IdentityUser>()
+            services.AddIdentity<User>()
                 .AddDefaultUI(UIFramework.Bootstrap4)
-                .AddEntityFrameworkStores<ToDoDbContext>();
+                .AddDefaultTokenProviders()
+                .AddUserStore<ToDoUserStore>();
             services.AddControllersWithViews()
                 .AddNewtonsoftJson();
             services.AddRazorPages();
