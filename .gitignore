@@ -331,3 +331,6 @@ ASALocalRun/
 
 # Rider
 .idea
+
+# Sqlite db file
+Test.Web/app.db
