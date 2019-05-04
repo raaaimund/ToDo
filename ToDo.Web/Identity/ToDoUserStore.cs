@@ -21,8 +21,10 @@ namespace ToDo.Web.Identity
         {
         }
 
-        public async Task<IdentityResult> CreateAsync(User user, CancellationToken cancellationToken)
+        public async Task<IdentityResult> CreateAsync(User user, CancellationToken cancellationToken = default)
         {
+            cancellationToken.ThrowIfCancellationRequested();
+            if (user == null) throw new ArgumentNullException(nameof(user));
             _context.Add(user);
             var affectedRows = await _context.SaveChangesAsync(cancellationToken);
             return affectedRows > 0
@@ -30,8 +32,10 @@ namespace ToDo.Web.Identity
                 : IdentityResult.Failed(new IdentityError() {Description = $"Could not create user {user.Username}."});
         }
 
-        public async Task<IdentityResult> DeleteAsync(User user, CancellationToken cancellationToken)
+        public async Task<IdentityResult> DeleteAsync(User user, CancellationToken cancellationToken = default)
         {
+            cancellationToken.ThrowIfCancellationRequested();
+            if (user == null) throw new ArgumentNullException(nameof(user));
             var userFromDb = await _context.User.FindAsync(user.Id);
             _context.Remove(userFromDb);
             var affectedRows = await _context.SaveChangesAsync(cancellationToken);
@@ -40,45 +44,59 @@ namespace ToDo.Web.Identity
                 : IdentityResult.Failed(new IdentityError() {Description = $"Could not delete user {user.Username}."});
         }
 
-        public async Task<User> FindByIdAsync(string userId, CancellationToken cancellationToken)
+        public async Task<User> FindByIdAsync(string userId, CancellationToken cancellationToken = default)
         {
+            cancellationToken.ThrowIfCancellationRequested();
             return await _context.User.SingleOrDefaultAsync(u => u.Id.Equals(Guid.Parse(userId)), cancellationToken);
         }
 
-        public async Task<User> FindByNameAsync(string normalizedUserName, CancellationToken cancellationToken)
+        public async Task<User> FindByNameAsync(string normalizedUserName,
+            CancellationToken cancellationToken = default)
         {
+            cancellationToken.ThrowIfCancellationRequested();
             return await _context.User.SingleOrDefaultAsync(u => u.Username.Equals(normalizedUserName),
                 cancellationToken);
         }
 
-        public async Task<string> GetNormalizedUserNameAsync(User user, CancellationToken cancellationToken)
+        public Task<string> GetNormalizedUserNameAsync(User user, CancellationToken cancellationToken = default)
         {
-            return user.Username;
+            cancellationToken.ThrowIfCancellationRequested();
+            if (user == null) throw new ArgumentNullException(nameof(user));
+            return Task.FromResult(user.Username);
         }
 
-        public async Task<string> GetUserIdAsync(User user, CancellationToken cancellationToken)
+        public Task<string> GetUserIdAsync(User user, CancellationToken cancellationToken = default)
         {
-            return user.Id.ToString();
+            cancellationToken.ThrowIfCancellationRequested();
+            if (user == null) throw new ArgumentNullException(nameof(user));
+            return Task.FromResult(user.Id.ToString());
         }
 
-        public async Task<string> GetUserNameAsync(User user, CancellationToken cancellationToken)
+        public Task<string> GetUserNameAsync(User user, CancellationToken cancellationToken = default)
         {
-            return user.Username;
+            cancellationToken.ThrowIfCancellationRequested();
+            if (user == null) throw new ArgumentNullException(nameof(user));
+            return Task.FromResult(user.Username);
         }
 
-        public async Task SetNormalizedUserNameAsync(User user, string normalizedName,
-            CancellationToken cancellationToken)
+        public Task SetNormalizedUserNameAsync(User user, string normalizedName,
+            CancellationToken cancellationToken = default)
         {
-            user.Username = normalizedName;
+            return Task.FromResult<object>(null);
         }
 
-        public async Task SetUserNameAsync(User user, string userName, CancellationToken cancellationToken)
+        public Task SetUserNameAsync(User user, string userName, CancellationToken cancellationToken = default)
         {
+            cancellationToken.ThrowIfCancellationRequested();
+            if (user == null) throw new ArgumentNullException(nameof(user));
             user.Username = userName;
+            return Task.FromResult<object>(null);
         }
 
-        public async Task<IdentityResult> UpdateAsync(User user, CancellationToken cancellationToken)
+        public async Task<IdentityResult> UpdateAsync(User user, CancellationToken cancellationToken = default)
         {
+            cancellationToken.ThrowIfCancellationRequested();
+            if (user == null) throw new ArgumentNullException(nameof(user));
             _context.Update(user);
             var affectedRows = await _context.SaveChangesAsync(cancellationToken);
             return affectedRows > 0
@@ -86,55 +104,71 @@ namespace ToDo.Web.Identity
                 : IdentityResult.Failed(new IdentityError() {Description = $"Could not update user {user.Username}."});
         }
 
-        public async Task<string> GetPasswordHashAsync(User user, CancellationToken cancellationToken)
+        public Task<string> GetPasswordHashAsync(User user, CancellationToken cancellationToken = default)
         {
-            return user.PasswordHash;
+            cancellationToken.ThrowIfCancellationRequested();
+            if (user == null) throw new ArgumentNullException(nameof(user));
+            return Task.FromResult(user.PasswordHash);
         }
 
-        public async Task<bool> HasPasswordAsync(User user, CancellationToken cancellationToken)
+        public Task<bool> HasPasswordAsync(User user, CancellationToken cancellationToken = default)
         {
-            return !string.IsNullOrWhiteSpace(user.PasswordHash);
+            cancellationToken.ThrowIfCancellationRequested();
+            if (user == null) throw new ArgumentNullException(nameof(user));
+            return Task.FromResult(!string.IsNullOrWhiteSpace(user.PasswordHash));
         }
 
-        public async Task SetPasswordHashAsync(User user, string passwordHash, CancellationToken cancellationToken)
+        public Task SetPasswordHashAsync(User user, string passwordHash, CancellationToken cancellationToken = default)
         {
+            cancellationToken.ThrowIfCancellationRequested();
+            if (user == null) throw new ArgumentNullException(nameof(user));
             user.PasswordHash = passwordHash;
+            return Task.FromResult<object>(null);
         }
 
-        public async Task<User> FindByEmailAsync(string normalizedEmail, CancellationToken cancellationToken)
+        public async Task<User> FindByEmailAsync(string normalizedEmail, CancellationToken cancellationToken = default)
         {
+            cancellationToken.ThrowIfCancellationRequested();
             return await _context.User.SingleOrDefaultAsync(u => u.Username.Equals(normalizedEmail),
                 cancellationToken);
         }
 
-        public async Task<string> GetEmailAsync(User user, CancellationToken cancellationToken)
+        public Task<string> GetEmailAsync(User user, CancellationToken cancellationToken = default)
         {
-            return user.Username;
+            cancellationToken.ThrowIfCancellationRequested();
+            if (user == null) throw new ArgumentNullException(nameof(user));
+            return Task.FromResult(user.Username);
         }
 
-        public async Task<bool> GetEmailConfirmedAsync(User user, CancellationToken cancellationToken)
+        public Task<bool> GetEmailConfirmedAsync(User user, CancellationToken cancellationToken = default)
         {
-            return true;
+            return Task.FromResult(true);
         }
 
-        public async Task<string> GetNormalizedEmailAsync(User user, CancellationToken cancellationToken)
+        public Task<string> GetNormalizedEmailAsync(User user, CancellationToken cancellationToken = default)
         {
-            return user.Username;
+            cancellationToken.ThrowIfCancellationRequested();
+            if (user == null) throw new ArgumentNullException(nameof(user));
+            return Task.FromResult(user.Username);
         }
 
-        public async Task SetEmailAsync(User user, string email, CancellationToken cancellationToken)
+        public Task SetEmailAsync(User user, string email, CancellationToken cancellationToken = default)
         {
+            cancellationToken.ThrowIfCancellationRequested();
+            if (user == null) throw new ArgumentNullException(nameof(user));
             user.Username = email;
+            return Task.FromResult<object>(null);
         }
 
-        public async Task SetEmailConfirmedAsync(User user, bool confirmed, CancellationToken cancellationToken)
+        public Task SetEmailConfirmedAsync(User user, bool confirmed, CancellationToken cancellationToken = default)
         {
+            return Task.FromResult<object>(null);
         }
 
-        public async Task SetNormalizedEmailAsync(User user, string normalizedEmail,
-            CancellationToken cancellationToken)
+        public Task SetNormalizedEmailAsync(User user, string normalizedEmail,
+            CancellationToken cancellationToken = default)
         {
-            user.Username = normalizedEmail;
+            return Task.FromResult<object>(null);
         }
     }
 }

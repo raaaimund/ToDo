@@ -3,23 +3,23 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.28803.352
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ToDo.Web", "ToDo.Web\ToDo.Web.csproj", "{4FE71B73-670C-4900-93F6-E2432006E3D0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ToDo.Web", "ToDo.Web\ToDo.Web.csproj", "{4FE71B73-670C-4900-93F6-E2432006E3D0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ToDo.Dto", "ToDo.Dto\ToDo.Dto.csproj", "{A3759156-4917-4C47-83FC-7673D8211D88}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ToDo.Dto", "ToDo.Dto\ToDo.Dto.csproj", "{A3759156-4917-4C47-83FC-7673D8211D88}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ToDo.Data", "ToDo.Data\ToDo.Data.csproj", "{64D6B17A-1C7E-4BCA-8A69-96942C5D38CC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ToDo.Data", "ToDo.Data\ToDo.Data.csproj", "{64D6B17A-1C7E-4BCA-8A69-96942C5D38CC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ToDo.Services", "ToDo.Services\ToDo.Services.csproj", "{2835B541-13FF-4FBC-91C0-810D29B73D9D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ToDo.Services", "ToDo.Services\ToDo.Services.csproj", "{2835B541-13FF-4FBC-91C0-810D29B73D9D}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{0DAA75CF-E1F9-487F-866F-3EBB63112050}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ToDo.Data.Tests", "ToDo.Data.Tests\ToDo.Data.Tests.csproj", "{87E1796F-4C02-4FEC-9D4C-7231304F06CE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ToDo.Data.Tests", "ToDo.Data.Tests\ToDo.Data.Tests.csproj", "{87E1796F-4C02-4FEC-9D4C-7231304F06CE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ToDo.Services.Tests", "ToDo.Services.Tests\ToDo.Services.Tests.csproj", "{32B62B33-ED61-4962-942B-02917AC06AF0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ToDo.Services.Tests", "ToDo.Services.Tests\ToDo.Services.Tests.csproj", "{32B62B33-ED61-4962-942B-02917AC06AF0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ToDo.Web.Tests", "ToDo.Web.Tests\ToDo.Web.Tests.csproj", "{082EFBC9-AAC4-4382-8EB6-C1A5A524AD64}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ToDo.Web.Tests", "ToDo.Web.Tests\ToDo.Web.Tests.csproj", "{082EFBC9-AAC4-4382-8EB6-C1A5A524AD64}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ToDo.Web.IntegrationTests", "ToDo.Web.IntegrationTests\ToDo.Web.IntegrationTests.csproj", "{E37F24DA-08CE-4494-8945-65D9E6A05A86}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ToDo.Web.IntegrationTests", "ToDo.Web.IntegrationTests\ToDo.Web.IntegrationTests.csproj", "{E37F24DA-08CE-4494-8945-65D9E6A05A86}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
