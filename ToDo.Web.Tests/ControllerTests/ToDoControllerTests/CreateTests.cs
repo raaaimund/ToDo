@@ -56,7 +56,7 @@ namespace ToDo.Web.Tests.ControllerTests.ToDoControllerTests
         {
             var model = new CreateViewModel() { Name = nameof(CreatePostShouldCallAddItemAsyncOnceIfModelIsValid) };
 
-            var result = await ControllerUnderTest.Create(model);
+            await ControllerUnderTest.Create(model);
 
             MockService.Verify(mock => mock.AddItemAsync(It.IsAny<ToDoItem>()), Times.Once);
         }
@@ -67,7 +67,7 @@ namespace ToDo.Web.Tests.ControllerTests.ToDoControllerTests
             var item = new ToDoItem() { Name = nameof(CreatePostShouldCallAddItemAsyncWithCorrectParameterIfModelIsValid) };
             var model = new CreateViewModel() { Name = item.Name };
 
-            var result = await ControllerUnderTest.Create(model);
+            await ControllerUnderTest.Create(model);
 
             MockService.Verify(mock => mock.AddItemAsync(It.Is<ToDoItem>(i => i.Name.Equals(item.Name))), Times.Once);
         }

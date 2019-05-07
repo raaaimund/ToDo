@@ -30,7 +30,7 @@ namespace ToDo.Web.Tests.ControllerTests.ToDoControllerTests
         [Fact]
         public async Task DeleteGetShouldCallGetAsyncOnce()
         {
-            var result = await ControllerUnderTest.Delete(Guid.Empty);
+            await ControllerUnderTest.Delete(Guid.Empty);
 
             MockService.Verify(mock => mock.GetAsync(It.IsAny<Guid>()), Times.Once);
         }

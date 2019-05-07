@@ -30,7 +30,7 @@ namespace ToDo.Web.Tests.ControllerTests.ToDoControllerTests
         [Fact]
         public async Task UpdateGetShouldCallGetAsyncOnce()
         {
-            var result = await ControllerUnderTest.Update(Guid.Empty);
+            await ControllerUnderTest.Update(Guid.Empty);
 
             MockService.Verify(mock => mock.GetAsync(It.IsAny<Guid>()), Times.Once);
         }

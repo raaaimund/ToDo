@@ -4,14 +4,14 @@ using System;
 
 namespace ToDo.Data.Tests
 {
-    public class TestWithSqlite : IDisposable
+    public abstract class TestWithSqlite : IDisposable
     {
         private const string InMemoryConnectionString = "DataSource=:memory:";
         private readonly SqliteConnection _connection;
 
         protected readonly ToDoDbContext DbContext;
 
-        public TestWithSqlite()
+        protected TestWithSqlite()
         {
             _connection = new SqliteConnection(InMemoryConnectionString);
             _connection.Open();

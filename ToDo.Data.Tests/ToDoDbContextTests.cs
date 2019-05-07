@@ -6,7 +6,7 @@ namespace ToDo.Data.Tests
     public class ToDoDbContextTests : TestWithSqlite
     {
         [Fact]
-        public async Task DatabaseShouldGetCreated()
+        public async Task DatabaseIsAvailableAndCanBeConnectedTo()
         {
             Assert.True(await DbContext.Database.CanConnectAsync());
         }
