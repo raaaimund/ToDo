@@ -17,12 +17,12 @@ namespace ToDo.Web.IntegrationTests.ViewTests.ToDoViewTests
         public async Task DisplaysAllToDoItems()
         {
             var client = Factory.CreateClient();
+
             var indexView = await client.GetAsync("/ToDo");
 
             Assert.Equal(HttpStatusCode.OK, indexView.StatusCode);
             var indexViewHtml = await HtmlHelpers.GetDocumentAsync(indexView);
             var todoItems = indexViewHtml.QuerySelectorAll(".todo-item");
-
             Assert.Equal(2, todoItems.Length);
         }
     }
