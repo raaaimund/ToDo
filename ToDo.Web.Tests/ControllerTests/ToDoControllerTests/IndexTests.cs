@@ -23,6 +23,7 @@ namespace ToDo.Web.Tests.ControllerTests.ToDoControllerTests
             var result = await ControllerUnderTest.Index();
 
             var viewResult = Assert.IsType<ViewResult>(result);
+
             Assert.IsAssignableFrom<IEnumerable<ToDoItem>>(viewResult.ViewData.Model);
         }
 
@@ -32,6 +33,7 @@ namespace ToDo.Web.Tests.ControllerTests.ToDoControllerTests
             var result = await ControllerUnderTest.Index();
 
             var viewResult = Assert.IsType<ViewResult>(result);
+
             var model = Assert.IsAssignableFrom<IEnumerable<ToDoItem>>(viewResult.ViewData.Model);
             Assert.Equal(2, model.Count());
         }

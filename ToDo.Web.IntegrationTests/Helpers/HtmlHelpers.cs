@@ -11,7 +11,7 @@ namespace ToDo.Web.IntegrationTests.Helpers
     /// <summary>
     /// Original: https://github.com/aspnet/AspNetCore.Docs/blob/master/aspnetcore/test/integration-tests/samples/2.x/IntegrationTestsSample/tests/RazorPagesProject.Tests/Helpers/HtmlHelpers.cs
     /// </summary>
-    public class HtmlHelpers
+    public static class HtmlHelpers
     {
         public static async Task<IHtmlDocument> GetDocumentAsync(HttpResponseMessage response)
         {

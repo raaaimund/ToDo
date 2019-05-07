@@ -25,6 +25,7 @@ namespace ToDo.Web.Tests.ControllerTests.ToDoControllerTests
             var result = ControllerUnderTest.Create();
 
             var viewResult = Assert.IsType<ViewResult>(result);
+
             Assert.Null(viewResult.ViewData.Model);
         }
 
@@ -32,8 +33,8 @@ namespace ToDo.Web.Tests.ControllerTests.ToDoControllerTests
         public async Task CreatePostShouldReturnCreateViewModelIfModelIsInvalid()
         {
             var model = new CreateViewModel();
-
             ControllerUnderTest.ModelState.AddModelError("error", "testerror");
+
             var result = await ControllerUnderTest.Create(model);
 
             var viewResult = Assert.IsType<ViewResult>(result);

@@ -1,8 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System;
-using System.Collections.Generic;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
 using ToDo.Dto;
 using ToDo.Services;
 using ToDo.Web.Models.ToDo;
@@ -19,7 +17,6 @@ namespace ToDo.Web.Controllers
         }
 
         [HttpGet]
-        [ProducesResponseType(typeof(IEnumerable<ToDoItem>), StatusCodes.Status200OK)]
         public async Task<IActionResult> Index()
         {
             var items = await _toDoItemService.GetItemsAsync();
@@ -27,7 +24,6 @@ namespace ToDo.Web.Controllers
         }
 
         [HttpGet]
-        [ProducesResponseType(StatusCodes.Status200OK)]
         public IActionResult Create()
         {
             return View();
@@ -35,8 +31,6 @@ namespace ToDo.Web.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [ProducesResponseType(StatusCodes.Status302Found)]
-        [ProducesResponseType(typeof(CreateViewModel), StatusCodes.Status200OK)]
         public async Task<IActionResult> Create(CreateViewModel model)
         {
             if (!ModelState.IsValid) return View(model);
@@ -45,8 +39,6 @@ namespace ToDo.Web.Controllers
         }
 
         [HttpGet]
-        [ProducesResponseType(StatusCodes.Status404NotFound)]
-        [ProducesResponseType(typeof(UpdateViewModel), StatusCodes.Status200OK)]
         public async Task<IActionResult> Update(Guid id)
         {
             var item = await _toDoItemService.GetAsync(id);
@@ -60,8 +52,6 @@ namespace ToDo.Web.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [ProducesResponseType(StatusCodes.Status302Found)]
-        [ProducesResponseType(typeof(UpdateViewModel), StatusCodes.Status200OK)]
         public async Task<IActionResult> Update(UpdateViewModel model)
         {
             if (!ModelState.IsValid) return View(model);
@@ -70,8 +60,6 @@ namespace ToDo.Web.Controllers
         }
 
         [HttpGet]
-        [ProducesResponseType(StatusCodes.Status404NotFound)]
-        [ProducesResponseType(typeof(DeleteViewModel), StatusCodes.Status200OK)]
         public async Task<IActionResult> Delete(Guid id)
         {
             var item = await _toDoItemService.GetAsync(id);
@@ -85,7 +73,6 @@ namespace ToDo.Web.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [ProducesResponseType(StatusCodes.Status302Found)]
         public async Task<IActionResult> Delete(DeleteViewModel model)
         {
             await _toDoItemService.DeleteItemAsync(model.Id);
