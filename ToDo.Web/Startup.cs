@@ -33,9 +33,8 @@ namespace ToDo.Web
         protected void ConfigureDefaultServices(IServiceCollection services)
         {
             services.Configure<CookiePolicyOptions>(options => { options.CheckConsentNeeded = context => true; });
-            services.AddIdentity<User>()
+            services.AddDefaultIdentity<User>()
                 .AddDefaultUI(UIFramework.Bootstrap4)
-                .AddDefaultTokenProviders()
                 .AddUserStore<ToDoUserStore>();
             services.AddControllersWithViews()
                 .AddNewtonsoftJson();

@@ -54,7 +54,7 @@ namespace ToDo.Web.Identity
             CancellationToken cancellationToken = default)
         {
             cancellationToken.ThrowIfCancellationRequested();
-            return await _context.User.SingleOrDefaultAsync(u => u.Username.Equals(normalizedUserName),
+            return await _context.User.SingleOrDefaultAsync(u => u.Username.Equals(normalizedUserName.ToLower()),
                 cancellationToken);
         }
 
