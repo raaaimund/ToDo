@@ -17,7 +17,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\ToDo.Services\ToDo.Services.csproj" />
     <ProjectReference Include="..\ToDo.Web\ToDo.Web.csproj" />
   </ItemGroup>
 

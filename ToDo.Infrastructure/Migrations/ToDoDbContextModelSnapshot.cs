@@ -3,9 +3,9 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using ToDo.Data;
+using ToDo.Infrastructure.Persistence;
 
-namespace ToDo.Web.Migrations
+namespace ToDo.Infrastructure.Migrations
 {
     [DbContext(typeof(ToDoDbContext))]
     partial class ToDoDbContextModelSnapshot : ModelSnapshot
@@ -14,15 +14,17 @@ namespace ToDo.Web.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "3.0.0-preview4.19216.3");
+                .HasAnnotation("ProductVersion", "3.0.1");
 
-            modelBuilder.Entity("ToDo.Dto.ToDoItem", b =>
+            modelBuilder.Entity("ToDo.Domain.Entities.ToDoItem", b =>
                 {
                     b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd();
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("Name")
                         .IsRequired()
+                        .HasColumnType("TEXT")
                         .HasMaxLength(128);
 
                     b.HasKey("Id");
@@ -30,16 +32,19 @@ namespace ToDo.Web.Migrations
                     b.ToTable("ToDoItem");
                 });
 
-            modelBuilder.Entity("ToDo.Dto.User", b =>
+            modelBuilder.Entity("ToDo.Domain.Entities.User", b =>
                 {
                     b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd();
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("PasswordHash")
-                        .IsRequired();
+                        .IsRequired()
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("Username")
                         .IsRequired()
+                        .HasColumnType("TEXT")
                         .HasMaxLength(128);
 
                     b.HasKey("Id");

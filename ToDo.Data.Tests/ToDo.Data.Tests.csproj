@@ -16,8 +16,4 @@
     </PackageReference>
   </ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\ToDo.Data\ToDo.Data.csproj" />
-  </ItemGroup>
-
 </Project>

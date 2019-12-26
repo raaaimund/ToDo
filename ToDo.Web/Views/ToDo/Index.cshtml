@@ -1,5 +1,4 @@
-﻿@using ToDo.Dto
-@model IEnumerable<ToDoItem>
+﻿@model ToDo.Application.ToDoItem.Queries.ToDoItemsViewModel
 @{
     ViewData["Title"] = "My ToDos";
 }
@@ -7,7 +6,7 @@
 <h1 class="display-4">My ToDos</h1>
 <div class="mt-5"></div>
 <ul>
-    @foreach (var item in Model)
+    @foreach (var item in Model.ToDoItems)
     {
     <li class="todo-item">
         <a asp-action="@nameof(ToDo.Web.Controllers.ToDoController.Update)" asp-route-id="@item.Id">@item.Name</a>

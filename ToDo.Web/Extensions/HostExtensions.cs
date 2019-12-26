@@ -33,7 +33,7 @@ namespace ToDo.Web.Extensions
 
                     retry.Execute(() =>
                     {
-                        context.Database.Migrate();
+                        context.Database.EnsureCreated();
                         serviceProvider(services);
                     });
 

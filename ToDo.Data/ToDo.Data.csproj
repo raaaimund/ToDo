@@ -8,8 +8,4 @@
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.0.1" />
   </ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\ToDo.Dto\ToDo.Dto.csproj" />
-  </ItemGroup>
-
 </Project>

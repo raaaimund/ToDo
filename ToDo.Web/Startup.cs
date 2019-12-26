@@ -1,17 +1,13 @@
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using ToDo.Data;
-using System.Reflection;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Identity.UI;
 using Microsoft.Extensions.Hosting;
-using ToDo.Dto;
-using ToDo.Services;
-using ToDo.Web.Extensions;
-using ToDo.Web.Identity;
+using ToDo.Infrastructure.Extensions;
+using ToDo.Application.Extensions;
+using FluentValidation.AspNetCore;
+using ToDo.Application.Common.Interfaces;
+using ToDo.Web.Filters;
 
 namespace ToDo.Web
 {
@@ -32,24 +28,19 @@ namespace ToDo.Web
 
         protected void ConfigureDefaultServices(IServiceCollection services)
         {
+            services.AddInfrastructure();
+            services.AddApplication();
             services.Configure<CookiePolicyOptions>(options => { options.CheckConsentNeeded = context => true; });
-            services.AddDefaultIdentity<User>()
-                .AddDefaultUI(UIFramework.Bootstrap4)
-                .AddUserStore<ToDoUserStore>();
-            services.AddControllersWithViews()
-                .AddNewtonsoftJson();
+            services.AddControllersWithViews(conf => conf.Filters.Add<ModelStateValidationFilter>())
+                .AddNewtonsoftJson()
+                .AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<IToDoDbContext>());
             services.AddRazorPages();
-            services.AddScoped<IToDoItemService, ToDoItemService>();
         }
 
         // We have to override this message in our TestStartup, because we want to inject our own database providers
         protected virtual void ConfigureDatabaseServices(IServiceCollection services)
         {
-            services.AddDbContext<ToDoDbContext>(options =>
-                options.UseSqlite(
-                    Configuration.GetConnectionString("DefaultConnection"),
-                    builder => builder.MigrationsAssembly(typeof(Startup).GetTypeInfo().Assembly.GetName().Name)
-                ));
+            services.AddPersistence(Configuration);
         }
 
         public virtual void Configure(IApplicationBuilder app, IWebHostEnvironment env)

@@ -1,10 +1,10 @@
-﻿@using ToDo.Web.Models.ToDo
-@model DeleteViewModel
+﻿@using ToDo.Application.ToDoItem.Commands.DeleteToDoItem
+@model DeleteToDoItemCommand
 @{
-    ViewData["Title"] = $"Delete {Model.Name}";
+    ViewData["Title"] = $"Delete {ViewData["Name"]}";
 }
 
-<h1 class="display-4">Delete @Model.Name?</h1>
+<h1 class="display-4">Delete @ViewData["Name"]?</h1>
 <form asp-action="@nameof(ToDo.Web.Controllers.ToDoController.Delete)">
     @Html.AntiForgeryToken()
     <div asp-validation-summary="ModelOnly" class="text-danger"></div>

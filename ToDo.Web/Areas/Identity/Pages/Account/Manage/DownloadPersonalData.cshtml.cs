@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
-using ToDo.Dto;
+using ToDo.Domain.Entities;
 
 namespace ToDo.Web.Areas.Identity.Pages.Account.Manage
 {

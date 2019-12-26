@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using ToDo.Dto;
+using ToDo.Domain.Entities;
 
 namespace ToDo.Web.Areas.Identity.Pages.Account.Manage
 {

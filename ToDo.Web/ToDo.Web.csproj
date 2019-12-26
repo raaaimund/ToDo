@@ -7,13 +7,10 @@
     <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
   </PropertyGroup>
 
-  <ItemGroup>
-    <Compile Remove="Migrations\20190430220620_InitialMigration.cs" />
-    <Compile Remove="Migrations\20190430220620_InitialMigration.Designer.cs" />
-  </ItemGroup>
-
 
   <ItemGroup>
+    <PackageReference Include="fluentvalidation.aspnetcore" Version="8.5.1" />
+    <PackageReference Include="MediatR" Version="7.0.0" />
     <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="3.0.0" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="3.0.0" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="3.0.0" />
@@ -32,8 +29,7 @@
 
 
   <ItemGroup>
-    <ProjectReference Include="..\ToDo.Data\ToDo.Data.csproj" />
-    <ProjectReference Include="..\ToDo.Services\ToDo.Services.csproj" />
+    <ProjectReference Include="..\ToDo.Infrastructure\ToDo.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>

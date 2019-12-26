@@ -3,8 +3,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using System;
 using System.Linq;
-using ToDo.Data;
-using ToDo.Dto;
+using ToDo.Domain.Entities;
+using ToDo.Infrastructure.Persistence;
 using ToDo.Web.Extensions;
 
 namespace ToDo.Web
