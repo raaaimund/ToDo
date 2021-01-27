@@ -12,7 +12,7 @@ This repository is a playground for testing an ASP.Net Core project and for ASP.
 [3]: https://raaaimund.github.io/tech/2019/05/07/aspnet-core-unit-testing-moq/
 [4]: https://raaaimund.github.io/tech/2019/05/07/aspnet-core-unit-testing-inmemory/
 
-# <3 for the ASP.Net docs
+## ASP.Net docs with <3
 
 I linked the **aspnetcore-5.0 version**. This project is still using **netcoreapp3.0**.
 
