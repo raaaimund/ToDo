@@ -1,36 +1,29 @@
-﻿<Project Sdk="Microsoft.NET.Sdk.Web">
-
+<Project Sdk="Microsoft.NET.Sdk.Web">
   <PropertyGroup>
-    <TargetFramework>netcoreapp3.0</TargetFramework>
+    <TargetFramework>net5.0</TargetFramework>
     <UserSecretsId>aspnet-ToDo.Web-09F5F703-777C-43FF-8D61-FFF90E866D26</UserSecretsId>
     <AddRazorSupportForMvc>true</AddRazorSupportForMvc>
     <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
   </PropertyGroup>
-
   <ItemGroup>
-    <Compile Remove="Migrations\20190430220620_InitialMigration.cs" />
-    <Compile Remove="Migrations\20190430220620_InitialMigration.Designer.cs" />
+    <Compile Remove="Migrations\20190430220620_InitialMigration.cs"/>
+    <Compile Remove="Migrations\20190430220620_InitialMigration.Designer.cs"/>
   </ItemGroup>
-
-
   <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="3.0.0-preview4-19216-03" />
-    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="3.0.0-preview3-19153-02" />
-    <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="3.0.0-preview4-19216-03" />
-    <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="3.0.0-preview4-19216-03" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="3.0.0-preview4.19216.3" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.0.0-preview3.19153.1" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.0.0-preview4.19216.3" />
-    <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="3.0.0-preview3.19153.1" />
-    <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.4.10" />
-    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.2.3" />
-    <PackageReference Include="Polly" Version="7.1.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="5.0.7"/>
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="5.0.7"/>
+    <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="5.0.7"/>
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="5.0.7"/>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="5.0.7"/>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="5.0.7"/>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="5.0.7"/>
+    <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="5.0.0"/>
+    <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.10.14"/>
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="5.0.2"/>
+    <PackageReference Include="Polly" Version="7.2.2"/>
   </ItemGroup>
-
-
   <ItemGroup>
-    <ProjectReference Include="..\ToDo.Data\ToDo.Data.csproj" />
-    <ProjectReference Include="..\ToDo.Services\ToDo.Services.csproj" />
+    <ProjectReference Include="..\ToDo.Data\ToDo.Data.csproj"/>
+    <ProjectReference Include="..\ToDo.Services\ToDo.Services.csproj"/>
   </ItemGroup>
-
 </Project>

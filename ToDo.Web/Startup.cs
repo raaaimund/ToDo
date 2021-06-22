@@ -28,13 +28,14 @@ namespace ToDo.Web
         {
             ConfigureDatabaseServices(services);
             ConfigureDefaultServices(services);
+            services.AddDatabaseDeveloperPageExceptionFilter();
         }
 
         protected void ConfigureDefaultServices(IServiceCollection services)
         {
             services.Configure<CookiePolicyOptions>(options => { options.CheckConsentNeeded = context => true; });
             services.AddDefaultIdentity<User>()
-                .AddDefaultUI(UIFramework.Bootstrap4)
+                // .AddDefaultUI(UIFramework.Bootstrap4)
                 .AddUserStore<ToDoUserStore>();
             services.AddControllersWithViews()
                 .AddNewtonsoftJson();
@@ -57,7 +58,9 @@ namespace ToDo.Web
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
-                app.UseDatabaseErrorPage();
+                // app.UseDatabaseErrorPage();
+                app.UseDeveloperExceptionPage();
+                app.UseMigrationsEndPoint();
             }
             else
             {

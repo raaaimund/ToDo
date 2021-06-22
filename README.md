@@ -14,7 +14,7 @@ This repository is a playground for testing an ASP.Net Core project and for ASP.
 
 ## ASP.Net docs with <3
 
-I linked the **aspnetcore-5.0 version**. This project is still using **netcoreapp3.0**.
+I linked the **aspnetcore-5.0 version**. This project is still using **net5.0**.
 
 - [Testing ASP.Net Core][5]
 - [Customize ASP.Net Core Identity][6]
